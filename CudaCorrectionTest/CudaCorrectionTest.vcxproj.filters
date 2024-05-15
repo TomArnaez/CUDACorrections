@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CudaCompile Include="main.hpp" />
+    <CudaCompile Include="Corrections.hpp">
+      <Filter>Corrections</Filter>
+    </CudaCompile>
+    <CudaCompile Include="Corrections.cpp">
+      <Filter>Corrections</Filter>
+    </CudaCompile>
+    <CudaCompile Include="OpticalFlowLocal.cpp">
+      <Filter>Optical Flow</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VKInterop.hpp" />
+    <ClCompile Include="external\OpticalFlow\NvOF.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="external\OpticalFlow\NvOFCuda.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="external\OpticalFlow\NvOFUtils.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="OpticalFlowCUDASDK.cpp">
+      <Filter>Optical Flow</Filter>
+    </ClCompile>
+    <ClCompile Include="external\OpticalFlow\NvOFDataLoader.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Buffer.hpp" />
+    <ClInclude Include="Core.hpp" />
+    <ClInclude Include="VkTest.hpp" />
+    <ClInclude Include="Acquistion.hpp" />
+    <ClInclude Include="ErrorMacros.hpp" />
+    <ClInclude Include="Types.hpp" />
+    <ClInclude Include="OpticalFlow.hpp">
+      <Filter>Optical Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\nvOpticalFlowCuda.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\NvOF.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\NvOFCuda.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\NvOFDefines.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\NvOFUtils.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\nvOpticalFlowCommon.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\FreeImage.h">
+      <Filter>External</Filter>
+    </ClInclude>
+    <ClInclude Include="helper_math.h">
+      <Filter>Optical Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="OpticalFlowCUDASDK.hpp">
+      <Filter>Optical Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="OpticalFlowLocal.hpp">
+      <Filter>Optical Flow</Filter>
+    </ClInclude>
+    <ClInclude Include="external\OpticalFlow\NvOFDataLoader.h">
+      <Filter>External</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Optical Flow">
+      <UniqueIdentifier>{a5482973-f08d-40f4-bb26-7036280e2022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Corrections">
+      <UniqueIdentifier>{6d2b3e30-2645-45d1-b93c-e6247f06232d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{b8178c38-1276-4c43-a178-71feb8e3a1d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

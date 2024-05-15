@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BA3FCBEA-C9E7-4C83-B46D-4B8D0A23EA62}</ProjectGuid>
+    <RootNamespace>CudaCorrectionTest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.4.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SL_INCLUDE);$VULKAN_SDK/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>FreeImage.lib;SLDeviceLib.lib;SLImage.lib;vulkan-1.lib;cuda.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;nppial.lib;nppist.lib;npps.lib;nppidei.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(VULKAN_SDK)\lib;$(SL_LIBS);%(AdditionalLibraryDirectories);$(CudaToolkitLibDir)</AdditionalLibraryDirectories>
+    </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Include>$(SL_INCLUDE);</Include>
+      <AdditionalOptions>--extended-lambda --std c++20 %(AdditionalOptions)</AdditionalOptions>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CudaCompile Include="main.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Acquistion.hpp" />
+    <ClInclude Include="Buffer.hpp" />
+    <ClInclude Include="Core.hpp" />
+    <CudaCompile Include="Corrections.hpp">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <ClInclude Include="external\OpticalFlow\FreeImage.h" />
+    <ClInclude Include="external\OpticalFlow\NvOF.h" />
+    <ClInclude Include="external\OpticalFlow\NvOFCuda.h" />
+    <ClInclude Include="external\OpticalFlow\NvOFDataLoader.h" />
+    <ClInclude Include="external\OpticalFlow\NvOFDefines.h" />
+    <ClInclude Include="external\OpticalFlow\NvOFUtils.h" />
+    <ClInclude Include="external\OpticalFlow\nvOpticalFlowCommon.h" />
+    <ClInclude Include="external\OpticalFlow\nvOpticalFlowCuda.h" />
+    <ClInclude Include="helper_math.h" />
+    <ClInclude Include="OpticalFlow.hpp" />
+    <ClInclude Include="OpticalFlowCUDASDK.hpp" />
+    <ClInclude Include="OpticalFlowLocal.hpp" />
+    <ClInclude Include="Types.hpp" />
+    <ClInclude Include="ErrorMacros.hpp" />
+    <ClInclude Include="VkTest.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="Corrections.cpp" />
+    <ClCompile Include="external\OpticalFlow\NvOF.cpp" />
+    <ClCompile Include="external\OpticalFlow\NvOFCuda.cpp" />
+    <ClCompile Include="external\OpticalFlow\NvOFDataLoader.cpp" />
+    <ClCompile Include="external\OpticalFlow\NvOFUtils.cpp" />
+    <ClCompile Include="OpticalFlowCUDASDK.cpp" />
+    <CudaCompile Include="OpticalFlowLocal.cpp" />
+    <ClCompile Include="VKInterop.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.4.targets" />
+  </ImportGroup>
+</Project>
